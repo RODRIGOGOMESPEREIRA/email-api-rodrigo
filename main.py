@@ -26,7 +26,7 @@ async def send_email(
     msg.attach(MIMEText(mensagem, 'plain'))
 
     with smtplib.SMTP("smtp.mail.com", 587) as server:
-        server.starttls("2147Rogope$"))
+        server.starttls("2147Rogope$")
         server.login(remetente, senha)
         server.send_message(msg)
 
