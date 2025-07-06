@@ -16,7 +16,7 @@ async def send_email(
     assunto: str = Form(...),
     mensagem: str = Form(...)
 ):
-    remetente = "os.getenv("EMAIL_PASSWORD")
+    remetente = os.getenv("EMAIL_PASSWORD")
     senha = os.getenv("EMAIL_PASSWORD") # variável .env
         
     msg = MIMEMultipart()
