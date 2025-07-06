@@ -3,6 +3,10 @@ from pydantic import EmailStr
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -13,7 +17,7 @@ async def send_email(
     mensagem: str = Form(...)
 ):
     remetente = "rodrigogp@dr.com"
-    senha = "SUA_SENHA_DO_MAIL.COM"
+    senha = os.getenv(2147Rogope$)  # variável .env
 
     msg = MIMEMultipart()
     msg['From'] = remetente
@@ -22,8 +26,12 @@ async def send_email(
     msg.attach(MIMEText(mensagem, 'plain'))
 
     with smtplib.SMTP("smtp.mail.com", 587) as server:
-        server.starttls()
+        server.starttls("2147Rogope$"))
         server.login(remetente, senha)
         server.send_message(msg)
 
     return {"status": "Email enviado com sucesso"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
