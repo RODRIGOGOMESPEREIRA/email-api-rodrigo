@@ -10,13 +10,17 @@ load_dotenv()
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"status": "online"}
+
 @app.post("/send-email/")
 async def send_email(
     destinatario: EmailStr = Form(...),
     assunto: str = Form(...),
     mensagem: str = Form(...)
 ):
-    remetente = os.getenv("EMAIL_PASSWORD")
+    remetente = os.getenv("rodrigogp@dr.com")
     senha = os.getenv("EMAIL_PASSWORD") # variável .env
         
     msg = MIMEMultipart()
@@ -26,9 +30,9 @@ async def send_email(
     msg.attach(MIMEText(mensagem, 'plain'))
 
     with smtplib.SMTP("smtp.mail.com", 587) as server:
-        server.starttls("2147Rogope$")
+        server.starttls() os.getenv("EMAIL_PASSWORD")
         server.login(remetente, senha)
-        server.send_message(msg)
+        server.send_message
 
     return {"status": "Email enviado com sucesso"}
 
