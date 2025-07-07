@@ -20,9 +20,9 @@ async def send_email(
     assunto: str = Form(...),
     mensagem: str = Form(...)
 ):
-    remetente = os.getenv("rodrigogp@dr.com")
-    senha = os.getenv("EMAIL_PASSWORD") # variável .env
-        
+    remetente = os.getenv("EMAIL_ADDRESS")
+    senha = os.getenv("EMAIL_PASSWORD")
+
     msg = MIMEMultipart()
     msg['From'] = remetente
     msg['To'] = destinatario
@@ -30,9 +30,9 @@ async def send_email(
     msg.attach(MIMEText(mensagem, 'plain'))
 
     with smtplib.SMTP("smtp.mail.com", 587) as server:
-        server.starttls() os.getenv("EMAIL_PASSWORD")
+        server.starttls()
         server.login(remetente, senha)
-        server.send_message
+        server.send_message(msg)
 
     return {"status": "Email enviado com sucesso"}
 
